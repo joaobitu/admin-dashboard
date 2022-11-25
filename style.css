@@ -1,0 +1,278 @@
+/*
+Ok where to start!
+
+Initially lets make a grid for the full page layout!
+that grid needs 100 vh
+the grid needs two columns, 
+one at 1fr, the other at 4fr
+the grid needs two rows, one at 1fr other at 4fr
+
+inside it we have the sidebar, at the first column and taking up both rows
+
+the header, taking up from the second column, and the first row
+
+the content, second row, and second column
+
+*/
+* {
+    box-sizing: border-box;
+    list-style-type: none;
+
+}
+body {
+    margin: 0;
+}
+.dashboard {
+    max-height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template: 1fr 4fr / 1fr 4fr;
+    background-color: rgb(207, 207, 207);
+}
+
+.sidebar {
+    display: flex;
+    padding: 10px 0 0 20px;
+    flex-direction: column;
+    background-color: rgb(25,146,212);
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 7fr 3fr;
+    box-shadow: rgba(0, 0, 0, 0.45) 2.95px 2.95px 3.6px;
+    background-color: white;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+
+.content {
+
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: auto;
+    background-color: #E2E8F0;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+/*
+alright one thing is out of the way!
+lets now think about getting the sidebar right!
+for this I believe the best solution will be most likely flex! for all of it!
+
+there are three elements! 
+
+sidebar is flex with a column direction
+sidebar needs some padding on the left and top!
+
+
+the Dashboard Logo, menu section 1, menu section 2
+
+there can be a nice gap between each element!
+
+the Logo div is a flex container
+
+the menu sections are lists!
+the ul are flex, and the li ase flex too! 
+ul is flex with a column direction
+li is flew with the standart direction
+
+*/
+
+.menu-first-section,
+.menu-second-section {
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item,
+.logo {
+    color: white;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.menu-item .menu-item-text {
+    align-self: flex-end;
+}
+
+/*
+now lets think about the header!
+
+it can be a grid with two columns and two rows!
+lets make the first column 7fr and second 3fr
+and both rows 1fr
+
+in the first element we have the search icon and search bar, this element will have a display of flex! --done 
+
+in the second element we will have the notification icon a circle image and an h2, also a flex element --done
+
+in the third element we have a circle Image, a p and a h1, it will be a flex item; p and h1 will be inside a flex container with the column direction --done
+
+in the 4th it will be a flex item with 3 buttons spaced around! --done
+
+*/
+[class^="header-element"]  {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-element4 {
+    justify-content: space-evenly;
+}
+.header-element4 button {
+    color: white;
+    background-color: rgb(25,146,212);
+    padding: 10px 20px 10px 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+}
+
+.header-element4 button:hover {
+    box-shadow:rgba(0, 0, 0, 0.45) 1.95px 1.95px 2.6px; ;
+}
+
+.header-element1 {
+    display: flex;
+    gap: 10px;
+    padding: 0 50px 0 20px;
+}
+.header-element1 input {
+    flex: 1;
+    appearance: none;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: rgb(226,232,240);
+    border: none;
+}
+
+input:focus-visible {
+    outline: none;
+}
+
+.header-element2 {
+    gap: 10px;
+}
+
+.header-element2 img {
+    height: 60px;
+    width: auto;
+}
+
+.header-element3 img {
+    height: 80px;
+    width: auto;
+}
+
+.header-element3 {
+    justify-self: start;
+    padding-left: 20px;
+    padding-right: 50px;
+    gap: 10px;
+    padding-bottom: 5px;
+}
+
+.header-element3 div > * {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+/*
+Alright now for the hardest part!
+content! 
+
+lets make it a grid with two columns and two rows
+the first column being 75% of the size and the other 25%
+
+the first element will be a flex item with two elements, the title and a grid with the cards as elements
+
+the second will also be a flex element with a title and a grid as second element
+
+same for the third element
+*/
+
+.left-content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    grid-row: 1 / 3;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(
+        to right,
+        rgb(240,180,41),
+        rgb(240,180,41) 10px,
+       white 10px,
+        white 20px
+      );
+    box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 2.6px;;
+    border-radius: 20px;
+    padding: 20px;
+    
+}
+
+.icons {
+    align-self: end;
+}
+.card-container {
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-template-rows: auto;
+}
+
+.announcements {
+    padding: 10px;
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+}
+.announcements-card,
+.trending-card  {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.45) 1.95px 1.95px 2.6px;;
+    margin-right: 10px;
+}
+.trending {
+    padding: 10px;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+}
+
+.announcements-card-section {
+    border-bottom: 1px solid grey;
+    padding: 3px;
+}
+
+.announcements-card-section p,
+.announcements-card-section h4,
+.trending-card p,
+.trending-card h5 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.trending img {
+    height: 40px;
+    width: auto;
+}
+
+.trending-card-section {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
